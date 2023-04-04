@@ -101,6 +101,7 @@ Some directories in the container are mounted, which means that their contents a
 
 - ``./dags`` - you can put your DAG files here.
 - ``./logs`` - contains logs from task execution and scheduler.
+- ``./config`` - you can put custom log parsers or ``airflow_local_settings.py`` with cluster policy configuration. 
 - ``./plugins`` - you can put your :doc:`custom plugins </authoring-and-scheduling/plugins>` here.
 
 This file uses the latest Airflow image (`apache/airflow <https://hub.docker.com/r/apache/airflow>`__).
