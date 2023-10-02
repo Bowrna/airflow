@@ -126,7 +126,7 @@ class Job(Base, LoggingMixin):
     def heartrate(self) -> float:
         return Job._heartrate(self.job_type)
 
-    def is_alive(self, grace_multiplier=2.1) -> bool:
+    def is_alive(self, grace_multiplier: float=2.1) -> bool:
         """
         Is this job currently alive.
 
