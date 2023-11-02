@@ -1365,10 +1365,17 @@ class SchedulerJobRunner(BaseJobRunner, LoggingMixin):
                 # when ``external_trigger`` is *False* and ``clear_number`` is 0.
                 expected_start_date = dag.get_run_data_interval(dag_run).end
                 schedule_delay = dag_run.start_date - expected_start_date
+                schedule_delay_in_ms = int(schedule_delay.total_seconds() * 1000)
                 # Publish metrics twice with backward compatible name, and then with tags
                 Stats.timing(f"dagrun.schedule_delay.{dag.dag_id}", schedule_delay)
                 Stats.timing(
                     "dagrun.schedule_delay",
+                    schedule_delay,
+                    tags={"dag_id": dag.dag_id},
+                )
+                Stats.timing(f"dagrun.schedule_delay_in_ms.{dag.dag_id}", schedule_delay)
+                Stats.timing(
+                    "dagrun.schedule_delay_in_ms",
                     schedule_delay,
                     tags={"dag_id": dag.dag_id},
                 )
